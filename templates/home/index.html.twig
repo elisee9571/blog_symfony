@@ -10,7 +10,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                <th scope="col">Action</th>
+                <th scope="col" class="d-flex justify-content-center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,9 +19,9 @@
                 <th scope="row">{{ category.id }}</th>
                 <td>{{ category.title }}</td>
                 <td>
-                    <div class="d-flex">
-                        <a href="#" class="btn btn-warning">Edit</a>
-                        <form action="{{path('category_delete')}}" method="post">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <a href="{{path('category_update', {'id': category.id })}}" class="btn btn-warning">Edit</a>
+                        <form action="{{path('category_delete', {'id': category.id })}}" method="post">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </div>
