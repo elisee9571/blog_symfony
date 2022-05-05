@@ -30,15 +30,28 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('home') }}">Home</a>
                     </li>
+                    {% if not app.user %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('register') }}">Register</a>
                     </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('post') }}">Ajouter Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('category') }}">Ajouter Categorie</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <form class="d-flex">
-                    <p>@username</p>
+                    {% if app.user %}
+                    <div class="mb-3">
+                        {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
+                    </div>
+                    {% endif %}
                 </form>
             </div>
         </div>

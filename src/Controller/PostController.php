@@ -19,6 +19,7 @@ class PostController extends AbstractController
     {
         $post = new Post();
         $post->setCreatedAt("2020-02-01");
+        $post->setUser($this->getUser());
 
         $formPost = $this->createForm(PostType::class, $post);
         $formPost->handleRequest($request);
