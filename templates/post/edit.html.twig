@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{{ form_start(formUpdatePost) }}
+    <div class="container">
+        <div class="mb-3">
+            {{form_row(formUpdatePost.title)}}
+        </div>
+        <div class="mb-3">
+            {{form_row(formUpdatePost.content)}}
+        </div>
+        <div class="mb-3">
+            {{form_row(formUpdatePost.category)}}
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </div>
+{{ form_end(formUpdatePost) }}
+{% endblock %}

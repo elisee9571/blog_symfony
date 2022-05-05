@@ -4,12 +4,12 @@
 
 {% block body %}
 
-{{ form_start(form_update) }}
+{{ form_start(formUpdate) }}
     <div class="container">
         <div class="mb-3">
-            {{ form_row(form_update.title) }}
+            {{ form_row(formUpdate.title) }}
         </div>
         <button type="submit" class="btn btn-primary">Modifier</button>
     </div>
-{{ form_end(form_update) }}
+{{ form_end(formUpdate) }}
 {% endblock %}

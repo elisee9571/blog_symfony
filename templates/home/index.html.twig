@@ -55,8 +55,8 @@
                 <td>{{ post.createdAt }}</td>
                 <td>
                     <div class="d-flex gap-2 justify-content-end">
-                        <a href="#" class="btn btn-warning">Edit</a>
-                        <form action="#" method="post">
+                        <a href="{{ path('post_update', {'id': post.id }) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ path('post_delete', {'id': post.id }) }}" method="post">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </div>
