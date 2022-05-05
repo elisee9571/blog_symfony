@@ -20,19 +20,19 @@ class PostController extends AbstractController
         $post = new Post();
         $post->setCreatedAt("2020-02-01");
 
-        $form_post = $this->createForm(PostType::class, $post);
-        $form_post->handleRequest($request);
+        $formPost = $this->createForm(PostType::class, $post);
+        $formPost->handleRequest($request);
 
-        if ($form_post->isSubmitted() && $form_post->isValid()) {
+        if ($formPost->isSubmitted() && $formPost->isValid()) {
             $em = $doctrine->getManager();
-            $em->persist($form_post->getData());
+            $em->persist($formPost->getData());
             $em->flush();
 
             return $this->redirectToRoute('home');
         }
 
         return $this->render('post/index.html.twig', [
-            'form_post' => $form_post->createView(),
+            'formPost' => $formPost->createView(),
         ]);
     }
 }

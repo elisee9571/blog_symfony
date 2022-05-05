@@ -5,16 +5,19 @@
 {% block body %}
 
 <div class="container">
-{{form_start(form_post)}}
+{{form_start(formPost)}}
     <div class="mb-3">
-        {{form_row(form_post.title)}}
+        {{form_row(formPost.title)}}
     </div>
      <div class="mb-3">
-        {{form_row(form_post.content)}}
+        {{form_row(formPost.content)}}
+    </div>
+    <div class="mb-3">
+        {{form_row(formPost.category)}}
     </div>
     <button type="submit" class="btn btn-primary">Ajouter</button>
 
-{{form_end(form_post)}}
+{{form_end(formPost)}}
 
 </div>
 {% endblock %}
