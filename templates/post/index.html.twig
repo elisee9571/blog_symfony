@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+{{form_start(form_post)}}
+    <div class="mb-3">
+        {{form_row(form_post.title)}}
+    </div>
+     <div class="mb-3">
+        {{form_row(form_post.content)}}
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+
+{{form_end(form_post)}}
+
+</div>
+{% endblock %}

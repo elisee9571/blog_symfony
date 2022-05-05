@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,8 +21,12 @@ class HomeController extends AbstractController
         $em = $doctrine->getManager();
         $categories = $em->getRepository(Category::class)->findAll();
 
+        $em = $doctrine->getManager();
+        $posts = $em->getRepository(Post::class)->findAll();
+
         return $this->render('home/index.html.twig', [
-            'categories' => $categories
+            'categories' => $categories,
+            'posts' => $posts
         ]);
     }
 
