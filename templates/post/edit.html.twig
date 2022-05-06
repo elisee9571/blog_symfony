@@ -13,7 +13,15 @@
         <div class="mb-3">
             {{form_row(formUpdatePost.category)}}
         </div>
-        <button type="submit" class="btn btn-primary">Modifier</button>
-    </div>
+        <div class="mb-3">
+            {{form_row(formUpdatePost.isVisible)}}
+        </div>
+        <div class="d-flex gap-3">
+            <button type="submit" class="btn btn-primary">Modifier</button>
 {{ form_end(formUpdatePost) }}
+            <form action="{{path('post_delete', {'id': post.id }) }}" method="post">
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

@@ -5,66 +5,63 @@
 {% block body %}
 
 <div class="container">
-    <h2>Ajouter une categorie</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col" class="d-flex justify-content-center">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for category in categories %}
-            <tr>
-                <th scope="row">{{ category.id }}</th>
-                <td>{{ category.title }}</td>
-                <td>
-                    <div class="d-flex gap-2 justify-content-end">
-                        <a href="{{path('category_update', {'id': category.id })}}" class="btn btn-warning">Edit</a>
-                        <form action="{{path('category_delete', {'id': category.id })}}" method="post">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{{ path('category') }}" class="btn btn-primary">Ajouter une catégorie</a>
+    <div class="d-flex justify-content-around">
+        {% for post in posts %}
+        <div class="card text-center col-3">
+            <div class="card-header">
+            <span class="badge alert-secondary">
+                Author: {{ app.user ? 'Moi' : post.user.username }}
+                </span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.content }}</p>
+                <p class="card-text">{{ post.category.title }}</p>
+                <p class="card-text">
+                {% if app.user %}
+                    {% if post.isVisible %}
+                    <span class="badge alert-success">
+                        Statut: Visible
+                    </span>
+                    {% else %}
+                    <span class="badge alert-secondary">
+                        Statut: Invisible
+                    </span>
+                    {% endif %}
+                
+                </p>
+                <a href="{{ path('post_update', {'id': post.id }) }}" class="btn alert-primary">Edit</a>
+                {% endif %}
+            </div>
+            <div class="card-footer text-muted">
+                create at: {{ post.createdAt }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
-    <h2>Ajouter un post</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Content</th>
-                <th scope="col">Category</th>
-                <th scope="col">Date</th>
-                <th scope="col" class="d-flex justify-content-center">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for post in posts %}
-            <tr>
-                <th scope="row">{{ post.id }}</th>
-                <td>{{ post.title }}</td>
-                <td>{{ post.content }}</td>
-                <td>{{ post.category.title }}</td>
-                <td>{{ post.createdAt }}</td>
-                <td>
-                    <div class="d-flex gap-2 justify-content-end">
-                        <a href="{{ path('post_update', {'id': post.id }) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ path('post_delete', {'id': post.id }) }}" method="post">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{{ path('post') }}" class="btn btn-primary">Ajouter un post</a>
+    {% if app.user %}
+    <hr>
+    <h2>All post</h2>
+    <div class="d-flex justify-content-around">
+    {% for postAll in postsAll %}
+    <div class="card text-center col-3">
+            <div class="card-header">
+            <span class="badge alert-secondary">
+                Author: {{ postAll.user.username }}
+                </span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ postAll.title }}</h5>
+                <p class="card-text">{{ postAll.content }}</p>
+                <p class="card-text">{{ postAll.category.title }}</p>
+            </div>
+            <div class="card-footer text-muted">
+                create at: {{ postAll.createdAt }}
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+    </div>
 </div>
 {% endblock %}
