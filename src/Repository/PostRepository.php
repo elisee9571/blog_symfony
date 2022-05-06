@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\User;
 use Doctrine\ORM\ORMException;
@@ -48,8 +49,18 @@ class PostRepository extends ServiceEntityRepository
     public function findByBool()
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.post = :post')
             ->where('p.isVisible = true')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByCategory(string $category)
+    {
+        return $this->createQueryBuilder('p')
+            ->setParameter('category', $category)
+            ->join('p.category', 'c')
+            ->andWhere('c.title = :category')
+            ->andWhere('p.isVisible = true')
             ->getQuery()
             ->getResult();
     }

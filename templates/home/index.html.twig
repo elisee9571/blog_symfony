@@ -1,67 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
 
 <div class="container">
-    <div class="d-flex justify-content-around">
-        {% for post in posts %}
-        <div class="card text-center col-3">
-            <div class="card-header">
-            <span class="badge alert-secondary">
-                Author: {{ app.user ? 'Moi' : post.user.username }}
-                </span>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text">{{ post.content }}</p>
-                <p class="card-text">{{ post.category.title }}</p>
-                <p class="card-text">
-                {% if app.user %}
-                    {% if post.isVisible %}
-                    <span class="badge alert-success">
-                        Statut: Visible
-                    </span>
-                    {% else %}
-                    <span class="badge alert-secondary">
-                        Statut: Invisible
-                    </span>
-                    {% endif %}
-                
-                </p>
-                <a href="{{ path('post_update', {'id': post.id }) }}" class="btn alert-primary">Edit</a>
-                {% endif %}
-            </div>
-            <div class="card-footer text-muted">
-                create at: {{ post.createdAt }}
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-
-    {% if app.user %}
-    <hr>
-    <h2>All post</h2>
-    <div class="d-flex justify-content-around">
-    {% for postAll in postsAll %}
-    <div class="card text-center col-3">
-            <div class="card-header">
-            <span class="badge alert-secondary">
-                Author: {{ postAll.user.username }}
-                </span>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ postAll.title }}</h5>
-                <p class="card-text">{{ postAll.content }}</p>
-                <p class="card-text">{{ postAll.category.title }}</p>
-            </div>
-            <div class="card-footer text-muted">
-                create at: {{ postAll.createdAt }}
-            </div>
-        </div>
-        {% endfor %}
-    {% endif %}
-    </div>
+	<div class="row d-flex justify-content-center gap-5">
+		{% for post in posts %}
+			<div class="card text-center col-3">
+				<div class="card-header">
+					<span class="badge alert-secondary">
+						Author:
+						{{ app.user.username == post.user.username ? 'Moi' : post.user.username }}
+					</span>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">{{ post.title }}</h5>
+					<p class="card-text">{{ post.content }}</p>
+					<div class="d-flex gap-2 justify-content-center">
+						<p class="card-text">
+							<a href="{{path('categoryAll', {'category': post.category.title }) }}">
+								<span class="badge alert-info">{{ post.category.title }}</span>
+							</a>
+						</p>
+						<p class="card-text">
+							{% if app.user %}
+								{% if post.isVisible %}
+									<span class="badge alert-success">
+										Statut: Visible
+									</span>
+								{% else %}
+									<span class="badge alert-secondary">
+										Statut: Invisible
+									</span>
+								{% endif %}
+							</p>
+						</p>
+					</div>
+					<a href="{{ path('post_update', {'id': post.id }) }}" class="btn alert-primary">Edit</a>
+				{% endif %}
+			</div>
+			<div class="card-footer text-muted">
+				{{ post.createdAt }}
+			</div>
+		</div>
+	{% endfor %}
 </div>
-{% endblock %}
+
+{% if app.user %}
+	<hr>
+	<h2>All post</h2>
+	<div class="row d-flex justify-content-center gap-5">
+		{% for postAll in postsAll %}
+			<div class="card text-center col-3">
+				<div class="card-header">
+					<span class="badge alert-secondary">
+						Author:
+						{{ app.user.username == postAll.user.username ? 'Moi' : postAll.user.username }}
+					</span>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">{{ postAll.title }}</h5>
+					<p class="card-text">{{ postAll.content }}</p>
+					<p class="card-text">
+						<a href="{{path('categoryAll', {'category': postAll.category.title }) }}">
+							<span class="badge alert-info">{{ postAll.category.title }}</span>
+						</a>
+					</p>
+
+				</p>
+			</div>
+			<div class="card-footer text-muted">
+				{{ postAll.createdAt }}
+			</div>
+		</div>
+	{% endfor %}
+</div>{% endif %}</div>{% endblock %}

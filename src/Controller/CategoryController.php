@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category", name="category")
+     * @Route("/category/add", name="category")
      */
     public function index(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -31,7 +31,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('category/index.html.twig', [
+        return $this->render('category/add.html.twig', [
             'form' => $form->createView()
         ]);
     }
