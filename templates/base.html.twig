@@ -17,9 +17,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ path('home') }}">Navbar</a>
+            <a class="navbar-brand" href="{{ path('home') }}">Blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -39,17 +39,17 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('post') }}">Ajouter Post</a>
+                        <a class="nav-link" href="{{ path('post') }}">Add Post</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('category') }}">Ajouter Categorie</a>
+                        <a class="nav-link" href="{{ path('category') }}">Add Category</a>
                     </li>
                     {% endif %}
                 </ul>
                 <form class="d-flex">
                     {% if app.user %}
                     <div class="mb-3">
-                        {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
+                        {{ app.user.username }}, <a style ="text-decoration: none;" href="{{ path('logout') }}">Log out</a>
                     </div>
                     {% endif %}
                 </form>
