@@ -21,11 +21,11 @@
                 {% if app.user %}
                     {% if post.isVisible %}
                     <span class="badge alert-success">
-                        Statut: Visible
+                        Status: Visible
                     </span>
                     {% else %}
                     <span class="badge alert-secondary">
-                        Statut: Invisible
+                        Status: Invisible
                     </span>
                     {% endif %}
                 
@@ -42,7 +42,7 @@
 
     {% if app.user %}
     <hr>
-    <h2>All post</h2>
+    <h2>All posts</h2>
     <div class="d-flex justify-content-around">
     {% for postAll in postsAll %}
     <div class="card text-center col-3">
